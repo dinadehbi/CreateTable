@@ -90,22 +90,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit"])){
     $column1 = $_POST['column1'];
     $column2 = $_POST['column2'];
     $column3 = $_POST['column3'];
-    $column4 = $_POST['column4'];
     //select
     $select1 = $_POST['select1'];
     $select2 = $_POST['select2'];
     $select3 = $_POST['select3'];
-    $select4 = $_POST['select4'];
     
     try {
         $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $sql = "CREATE TABLE $tablename (
         id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-        $column1 $select1 NOT NULL,
-        $column2 $select2 NOT NULL,
-        $column3 $select3 NOT NULL,
-        $column4 $select4,
+        $column1 $select1(100) NOT NULL,
+        $column2 $select2(100) NOT NULL,
+        $column3 $select3(100) NOT NULL,
         reg_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
         )";
             $conn->exec($sql);
@@ -160,18 +157,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit"])){
             <option>FLOAT</option>
             <option>VARCHAR</option>
             <option>DATETIME</option>
-        </select>
-        </div>
-        <br>
-        <div>
-        <label for="">Column4:</label>
-        <input type="text" name="column4" required>
-        <select name="select4">
-            <option>INT</option>
-            <option>FLOAT</option>
-            <option>VARCHAR</option>
-            <option>DATETIME</option>
-            <option>TEXT</option>
         </select>
         </div>
         <br>
